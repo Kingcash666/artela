@@ -1,0 +1,80 @@
+run:
+  tests: false
+  timeout: 5m
+
+linters:
+  enable:
+    - bodyclose
+    - dogsled
+    - dupl
+    - errcheck
+    - goconst
+    - gocritic
+    - revive
+    - gosec
+    - gosimple
+    - govet
+    - ineffassign
+    - misspell
+    - nakedret
+    - prealloc
+    - exportloopref
+    - staticcheck
+    - stylecheck
+    - typecheck
+    - unconvert
+    - unparam
+    - unused
+    - nolintlint
+    - asciicheck
+    - exportloopref
+    - whitespace
+    # - gomodguard # TODO: disable for now, too many false positives
+    # - gofumpt # TODO: rules too strict fix all the errors later
+    # - depguard # TODO: enable depguard later, it reports too many false positives
+    # - lll # TODO: enable lll linter later, long text sometimes is not avoidable
+
+issues:
+  exclude-rules:
+    - path: _test\.go
+      linters:
+        - gosec
+    - path: x/evm/artela/contract/handlers.go
+      linters:
+        - nakedret
+    - path: _pb\.go
+      linters:
+        - gosec
+    - linters:
+        - lll
+      source: "https://"
+  max-same-issues: 50
+
+linters-settings:
+  lll:
+    line-length: 150
+  dogsled:
+    max-blank-identifiers: 3
+  golint:
+    min-confidence: 0
+  maligned:
+    suggest-new: true
+  gocritic:
+    disabled-checks:
+      - ifElseChain
+  misspell:
+    locale: US
+  nolintlint:
+    allow-unused: false
+    allow-leading-space: true
+    require-explanation: false
+    require-specific: false
+#  gomodguard:
+#    blocked:
+#      versions: # List of blocked module version constraints
+#        - https://github.com/etcd-io/etcd:                            # Blocked module with version constraint
+#            version: ">= 3.4.10 || ~3.3.23"                           # Version constraint, see https://github.com/Masterminds/semver#basic-comparisons
+#            reason: "CVE-2020-15114; CVE-2020-15136; CVE-2020-15115"  # Reason why the version constraint exists. (Optional)
+#        - https://github.com/dgrijalva/jwt-go:                      # Blocked module with version constraint
+#            version: ">= 4.0.0-preview1"                           # Version constraint, see https://github.com/Masterminds/semver#basic-comparisons
+#            reason: "CVE-2020-26160"  # Reason why the version constraint exists. (Optional)

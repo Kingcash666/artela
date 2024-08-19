@@ -1,0 +1,6 @@
+[submodule "artela/x/evm/migrations/v04"]
+	path = artela/x/evm/migrations/v04
+	url = https://Kingcash666@github.com/Kingcash666/
+[submodule "artela/x/evm/migrations/v06"]
+	path = artela/x/evm/migrations/v06
+	url = https://Kingcash666@github.com/Kingcash666/artela
